@@ -1,4 +1,4 @@
 go-build
 ========
 
-Build scripts for Ethereum Go
+Build scripts for Ethereum Go.
