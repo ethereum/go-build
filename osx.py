@@ -71,7 +71,7 @@ class AppBundler:
         if handles_qml and self.go_path is not None:
             qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/ethereal/assets/qml/') #TODO this is terrible
             command = exe + ' ' + os.path.join(self.output_dir + '/Ethereal.app') + ' -qmldir=' +  qml_path #TODO this is terrible
-            logging.info('Running macdeployqt')
+            logging.info('Running macdeployqt with options')
             p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             for line in p.stdout.readlines():
                 logging.info('macdeployqt: ' + line.strip())
@@ -97,6 +97,10 @@ class AppBundler:
         # do for rest
         # codesign --verbose --deep --force --sign "Developer ID Application: <<INSERT DETAILS HERE>>" Ethereal.app
         # codesign --verify --verbose=4 Ethereal.app
+
+    def insertAssets(self):
+        asset_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/ethereal/assets')
+        self.copytree(asset_path,"Ethereal.app/Contents/Resources/")
 
     # Insert all QML files and other resource files Ethereal needs
     def insertResources(self):
@@ -211,8 +215,9 @@ class AppBundler:
         self.writePList()
         self.insertICNS()
         self.insertGoBinary()
+        self.insertAssets()
 
-        self.insertResources()
+        #self.insertResources()
 
         if self.insertQTWebProcess(): #https://bugreports.qt-project.org/browse/QTBUG-35211
             self.runMacDeployQT()
