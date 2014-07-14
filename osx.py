@@ -29,15 +29,15 @@ XML_PLIST = """
   <key>CFBundleIconFile</key>
   <string>Ethereal.icns</string>
   <key>CFBundleShortVersionString</key>
-  <string>POC3</string>
+  <string>POC5</string>
   <key>CFBundleInfoDictionaryVersion</key>
-  <string>POC3</string>
+  <string>POC5</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>IFMajorVersion</key>
   <integer>0</integer>
   <key>IFMinorVersion</key>
-  <integer>3</integer>
+  <integer>5</integer>
 </dict>
 </plist>
 """
@@ -57,7 +57,7 @@ class AppBundler:
                 shutil.copytree(s, d, symlinks, ignore)
             else:
                 shutil.copy2(s, d)
-    
+
     # If macdeployqt handles qmldir then runs on app
     def runMacDeployQT(self):
         exe = '/usr/local/Cellar/qt5/5.2.0/bin/macdeployqt'
@@ -77,18 +77,20 @@ class AppBundler:
                 logging.info('macdeployqt: ' + line.strip())
         else:
             logging.error('Your version of macdeployqt does not handle qmldir')
-    
+
     # Add ICNS file to
     def insertICNS(self):
+        path = os.path.join(self.output_dir, 'Ethereal.app/Contents/Resources/Ethereal.icns')
+
         try:
-            shutil.copyfile('./Ethereal.icns', os.path.join(self.output_dir, 'Ethereal.app/Contents/Resources/Ethereal.icns')) # TODO this is horrible
+            shutil.copyfile('./Ethereal.icns',path) # TODO this is horrible
             logging.info('Inserted Ethereal.icns')
         except Exception as e:
             logging.error(str(e))
-    
+
     def insertQMLnPNG(self):
         pass # TODO
-    
+
     #def signApp(self):
         # after macdeployqt copy /usr/local/Cellar/qt5/5.2.0/lib/QtCore.framework/Contents/Info.plist to .app/Contents/Resources/QtCore.framework/Resources/Info.plist
         # codesign --verbose --force --sign "Developer ID Application: <<INSERT DETAILS HERE>>" /Users/_/Dropbox/Experiments/EthereumBuild/Ethereal.app/Contents/Frameworks/QtCore.framework
