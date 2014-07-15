@@ -101,6 +101,8 @@ class AppBundler:
     def insertAssets(self):
         asset_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/ethereal/assets')
         self.copytree(asset_path,"Ethereal.app/Contents/Resources/")
+        # Copy mnemonic word list
+        shutil.copy(os.path.join(self.go_path, 'src/github.com/ethereum/eth-go/ethcrypto/mnemonic.words.lst'),"Ethereal.app/Contents/Resources/")
 
     # Insert all QML files and other resource files Ethereal needs
     def insertResources(self):

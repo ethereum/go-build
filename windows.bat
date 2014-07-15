@@ -1,5 +1,6 @@
 @ECHO off
 set origin=%GOPATH%\src\github.com\ethereum\go-ethereum\ethereal
+set ethgo=%GOPATH%\src\github.com\ethereum\eth-go
 set target=%GOPATH%\pkg\ethereum\
 set qtPath=C:\Qt\Qt5.2.1\5.2.1\mingw48_32
 set mingwPath=C:\MingW\
@@ -8,6 +9,9 @@ ECHO "Setting up Windows binaries"
 
 ECHO "Copying assets from %GOPATH%"
 xcopy /s %origin%\assets %target%assets
+
+ECHO "Copying mnemonic words"
+copy %origin%\ethcrypto\mnemonic.words.lst %target%
 
 ECHO "Compiling Ethereal"
 cd %origin%
