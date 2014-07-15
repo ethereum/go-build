@@ -30,6 +30,7 @@ copy %qtPath%\bin\QtWebProcess.exe %target%
 copy %qtPath%\bin\Qt5MultimediaWidgets.dll %target%
 copy %qtPath%\bin\Qt5PrintSupport.dll %target%
 copy %qtPath%\bin\Qt5OpenGL.dll %target%
+copy %qtPath%\bin\QtWebKitWidgets.dll %target%
 
 copy %qtPath%\bin\libgcc_s_dw2-1.dll %target%
 copy "%qtPath%\bin\libstdc++-6.dll" %target%
