@@ -11,7 +11,7 @@ ECHO "Copying assets from %GOPATH%"
 xcopy /s %origin%\assets %target%assets
 
 ECHO "Copying mnemonic words"
-copy %origin%\ethcrypto\mnemonic.words.lst %target%
+copy %ethgo%\ethcrypto\mnemonic.words.lst %target%
 
 ECHO "Compiling Ethereal"
 cd %origin%
