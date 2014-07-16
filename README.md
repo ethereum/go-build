@@ -46,6 +46,7 @@ qopenglversionfunctions.h:785:43: error: expected unqualified-id before ')' toke
 See [this ticket](https://github.com/go-qml/qml/issues/56) for a couple of solutions.
 
 *Problem*
+
 pkg-config might whine about the config path. Setup an environment value `PKG_CONFIG_PATH` and set it to `C:\Qt\Qt5.2.1\5.2.1\mingw48_32\lib\pkgconfig`. Adopted to your QT version.
 
 If there are any build problems please create an issue because I have four A4's full of scribbled notes of other problems. :)
