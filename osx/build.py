@@ -223,6 +223,7 @@ class AppBundler:
 
         if self.insertQTWebProcess(): #https://bugreports.qt-project.org/browse/QTBUG-35211
             self.runMacDeployQT()
+            os.system("appdmg dmg_spec.json Ethereal.dmg")
 
         logging.info("fin'")
 

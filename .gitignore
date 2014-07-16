@@ -1,2 +1,4 @@
-*.app
-*.dmg
+**/*.app
+osx/*.dmg
+windows/*.exe
+osx/background*.*
