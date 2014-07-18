@@ -66,7 +66,7 @@ Section
   SetOutPath "$INSTDIR"
 
   file /r $%GOPATH%\pkg\ethereum\*.*
-  file $%GOPATH%\pkg\logo.ico
+  file logo.ico
 
   ;Store installation folder
   WriteRegStr HKCU "Software\Ethereal" "" $INSTDIR
