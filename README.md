@@ -19,25 +19,29 @@ If everything went ok you should now have a Ethereal.dmg file in your current fo
 
 Install all build dependencies.
 
-* Golang, 1.2 or higher 32bit
-* Install Git and Mercurial
-* Mingw32
-* Use mingw32-get to install gmp packages
-* Install QT5-mingw32 (5.2.1 at the moment of writing)
-* Add mingw32 to PATH
-* Install pkg-config somewhere in your PATH, you can find the executable with needed DLLs on the web or install GTK, it comes bundled with it.
-* NSIS
+* [Golang](http://golang.org/dl/) 1.2 or higher (32-bit required)
+* Install [Git](http://git-scm.com/) and [Mercurial](http://mercurial.selenic.com/)
+* [MinGW32](http://www.mingw.org/) (add X:\MinGW\bin directory to your  PATH)
+* Use mingw32-get to install *gmp* packages
+* Install [Qt5 for Windows 32-bit MinGW](http://qt-project.org/downloads) (5.2.1 at the moment of writing)
+* Install [pkg-config](http://www.freedesktop.org/wiki/Software/pkg-config/) somewhere in your PATH. (read the [instructions](http://stackoverflow.com/questions/1710922/how-to-install-pkg-config-in-windows) here)
+* Install [NSIS](http://nsis.sourceforge.net/)
 
-After all these things have been satisfied do a go get -u github.com/ethereum/go-ethereum/ethereal.
+After all these things have been satisfied ```go get -u github.com/ethereum/go-ethereum/ethereal```
 
-Once the compilation is completed you can create a setup binary. Edit build.bat and change qtPath and mingwPath to the paths of your installed versions. After right-click the nsi file and select "Compile NSIS Script". If everything went well you should now have a windows-setup file.
+Once the compilation is completed you can create a setup binary.
+- Edit build.bat and change qtPath and mingwPath to the paths of your installed versions. 
+- right-click the nsi file and select "Compile NSIS Script". 
+
+If everything went well you should now have a windows-setup file.
 
 
-#### Gotcha's
+#### Troubleshooting
 
-Now it will be a miracle if the windows build works in one go. So here are some things that can go wrong
+Now it will be a miracle if the windows build works in one go. 
+So here are some possible solutions for things that can go wrong:
 
-*Problem*
+*Expected unqualified-id*
 ```
 qopenglversionfunctions.h:785:43: error: expected unqualified-id before ')' token
      void (QOPENGLF_APIENTRYP MemoryBarrier)(GLbitfield barriers);
@@ -45,8 +49,8 @@ qopenglversionfunctions.h:785:43: error: expected unqualified-id before ')' toke
 
 See [this ticket](https://github.com/go-qml/qml/issues/56) for a couple of solutions.
 
-*Problem*
+*pkg-config path*
 
-pkg-config might whine about the config path. Setup an environment value `PKG_CONFIG_PATH` and set it to `C:\Qt\Qt5.2.1\5.2.1\mingw48_32\lib\pkgconfig`. Adopted to your QT version.
+pkg-config might complain about the config path. Setup an environment value `PKG_CONFIG_PATH` and set it to `C:\Qt\Qt5.2.1\5.2.1\mingw48_32\lib\pkgconfig`. Adopted to your QT version.
 
-If there are any build problems please create an issue because I have four A4's full of scribbled notes of other problems. :)
+If there are any build problems please create an issue.
