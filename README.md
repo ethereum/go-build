@@ -10,7 +10,6 @@ Install all build dependencies.
 * npm install -g appdmg
 * go get -u github.com/ethereum/go-ethereum/ethereal
 * Open build.py and edit the (macdeployqt) paths.
-* [Download the dmg-background images](https://dl.dropboxusercontent.com/u/374/Ethereum/ethereal-images.zip). (Not added to Git because of filesize)
 * python build.py
 
 If everything went ok you should now have a Ethereal.dmg file in your current folder.
