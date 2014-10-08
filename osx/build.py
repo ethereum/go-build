@@ -48,8 +48,6 @@ cd "${0%/*}"
 ./go-ethereum
 """
 
-qtVersion = '5.3.1'
-
 class AppBundler:
     def copytree(self, src, dst, symlinks=False, ignore=None):
         for item in os.listdir(src):
@@ -62,7 +60,7 @@ class AppBundler:
 
     # If macdeployqt handles qmldir then runs on app
     def runMacDeployQT(self):
-        exe = '/usr/local/Cellar/qt5/'+qtVersion+'/bin/macdeployqt'
+        exe = '/usr/local/opt/qt5/bin/macdeployqt'
         if not os.path.exists(exe): exe = 'macdeployqt'
         p = subprocess.Popen(exe, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         handles_qml = False
@@ -94,7 +92,7 @@ class AppBundler:
         pass # TODO
 
     #def signApp(self):
-        # after macdeployqt copy /usr/local/Cellar/qt5/5.2.0/lib/QtCore.framework/Contents/Info.plist to .app/Contents/Resources/QtCore.framework/Resources/Info.plist
+        # after macdeployqt copy /usr/local/opt/qt5/lib/QtCore.framework/Contents/Info.plist to .app/Contents/Resources/QtCore.framework/Resources/Info.plist
         # codesign --verbose --force --sign "Developer ID Application: <<INSERT DETAILS HERE>>" /Users/_/Dropbox/Experiments/EthereumBuild/Ethereal.app/Contents/Frameworks/QtCore.framework
         # do for rest
         # codesign --verbose --deep --force --sign "Developer ID Application: <<INSERT DETAILS HERE>>" Ethereal.app
@@ -190,7 +188,7 @@ class AppBundler:
         if answer is '' or answer[0:1] == 'y': return True
         return False
 
-    def insertQTWebProcess(self, path="/usr/local/Cellar/qt5/"+qtVersion+"/libexec/QtWebProcess"):
+    def insertQTWebProcess(self, path="/usr/local/opt/qt5/libexec/QtWebProcess"):
         logging.info('Copying QTWebProcess')
         libexec_path = self.output_dir + '/Mist.app/Contents/libexec'
         try:
