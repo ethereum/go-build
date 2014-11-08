@@ -69,7 +69,7 @@ class AppBundler:
                 handles_qml = True
                 break
         if handles_qml and self.go_path is not None:
-            qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/mist/assets/qml/') #TODO this is terrible
+            qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/cmd/mist/assets/qml/') #TODO this is terrible
             command = exe + ' ' + os.path.join(self.output_dir + '/Mist.app') + ' -qmldir=' +  qml_path #TODO this is terrible
             logging.info('Running macdeployqt with options')
             p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -99,14 +99,14 @@ class AppBundler:
         # codesign --verify --verbose=4 Ethereal.app
 
     def insertAssets(self):
-        asset_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/mist/assets')
+        asset_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/cmd/mist/assets')
         self.copytree(asset_path,"Mist.app/Contents/Resources/")
         # Copy mnemonic word list
         #shutil.copy(os.path.join(self.go_path, 'src/github.com/ethereum/eth-go/ethcrypto/mnemonic.words.lst'),"Mist.app/Contents/Resources/")
 
     # Insert all QML files and other resource files Mist needs
     def insertResources(self):
-        qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/mist/assets/qml/')
+        qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/cmd/mist/assets/qml/')
         target_folder = "Mist.app/Contents/Resources/"
         target_folder_qml = target_folder + "qml/"
 
@@ -120,7 +120,7 @@ class AppBundler:
             else:
                 self.copytree(f, target_folder_qml)
 
-        files = glob.glob(os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/mist/assets/*'))
+        files = glob.glob(os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/cmd/mist/assets/*'))
         for f in files:
             print "Copying %s to %s" % (f, target_folder)
             if isfile(f):
