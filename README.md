@@ -1,18 +1,18 @@
 go-build
 ========
 
-Build scripts for Ethereum Go.
+Build scripts for Ethereum Mist.
 
 ### OS X
 Install all build dependencies.
 
 * brew install go gmp readline
 * npm install -g appdmg
-* go get -u github.com/ethereum/go-ethereum/ethereal
+* go get -u github.com/ethereum/go-ethereum/cmd/mist
 * Open build.py and edit the (macdeployqt) paths.
 * python build.py
 
-If everything went ok you should now have a Ethereal.dmg file in your current folder.
+If everything went ok you should now have a Mist.dmg file in your current folder.
 
 ### Windows
 
@@ -26,18 +26,18 @@ Install all build dependencies.
 * Install [pkg-config](http://www.freedesktop.org/wiki/Software/pkg-config/) somewhere in your PATH. (read the [instructions](http://stackoverflow.com/questions/1710922/how-to-install-pkg-config-in-windows) here)
 * Install [NSIS](http://nsis.sourceforge.net/)
 
-After all these things have been satisfied ```go get -u github.com/ethereum/go-ethereum/ethereal```
+After all these things have been satisfied ```go get -u github.com/ethereum/go-ethereum/cmd/mist```
 
 Once the compilation is completed you can create a setup binary.
-- Edit build.bat and change qtPath and mingwPath to the paths of your installed versions. 
-- right-click the nsi file and select "Compile NSIS Script". 
+- Edit build.bat and change qtPath and mingwPath to the paths of your installed versions.
+- right-click the nsi file and select "Compile NSIS Script".
 
 If everything went well you should now have a windows-setup file.
 
 
 #### Troubleshooting
 
-Now it will be a miracle if the windows build works in one go. 
+Now it will be a miracle if the windows build works in one go.
 So here are some possible solutions for things that can go wrong:
 
 *Expected unqualified-id*
