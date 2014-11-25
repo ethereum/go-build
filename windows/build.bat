@@ -1,5 +1,5 @@
 @ECHO off
-set origin=%GOPATH%\src\github.com\ethereum\go-ethereum\ethereal
+set origin=%GOPATH%\src\github.com\ethereum\go-ethereum\cmd\mist
 set ethgo=%GOPATH%\src\github.com\ethereum\eth-go
 set target=%GOPATH%\pkg\ethereum\
 set qtPath=C:\Qt\Qt5.2.1\5.2.1\mingw48_32
@@ -13,12 +13,12 @@ xcopy /s %origin%\assets %target%assets
 ECHO "Copying mnemonic words"
 copy %ethgo%\ethcrypto\mnemonic.words.lst %target%
 
-ECHO "Compiling Ethereal"
+ECHO "Compiling Mist"
 cd %origin%
 go install
 
 ECHO "Copying to source folder"
-copy %GOPATH%\bin\ethereal.exe %target%
+copy %GOPATH%\bin\mist.exe %target%
 
 ECHO "Running QT Deploy"
 cd %target%

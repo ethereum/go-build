@@ -7,19 +7,19 @@
 ;General
 
   ;Name and file
-  Name "Ethereal"
-  OutFile "ethereal-setup.exe"
+  Name "Mist"
+  OutFile "mist-setup.exe"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Ethereal"
+  InstallDir "$PROGRAMFILES\Mist"
 
   ;Get installation folder from registry if available
-  InstallDirRegKey HKCU "Software\Ethereal" ""
+  InstallDirRegKey HKCU "Software\Mist" ""
 
   ;Request application privileges for Windows Vista
   RequestExecutionLevel admin
 
-  SetCompressor /SOLID lzma ; had the strongest compression rate for ethereal
+  SetCompressor /SOLID lzma ; had the strongest compression rate for Mist
 
 ;--------------------------------
 ;Variables
@@ -43,7 +43,7 @@
 
   ;Start Menu Folder Page Configuration
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU"
-  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\Ethereal"
+  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\Mist"
   !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
   ;!insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
@@ -69,18 +69,18 @@ Section
   file logo.ico
 
   ;Store installation folder
-  WriteRegStr HKCU "Software\Ethereal" "" $INSTDIR
+  WriteRegStr HKCU "Software\Mist" "" $INSTDIR
 
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
 
-  CreateShortCut "$DESKTOP\Ethereal.lnk" "$INSTDIR\ethereal.exe" "" "$INSTDIR\logo.ico" 0
+  CreateShortCut "$DESKTOP\Mist.lnk" "$INSTDIR\mist.exe" "" "$INSTDIR\logo.ico" 0
 
   ;create start-menu items
-  CreateDirectory "$SMPROGRAMS\Ethereal"
-  CreateShortCut "$SMPROGRAMS\Ethereal\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\Ethereal\Ethereal.lnk" "$INSTDIR\ethereal.exe" "" "$INSTDIR\logo.ico" 0
+  CreateDirectory "$SMPROGRAMS\Mist"
+  CreateShortCut "$SMPROGRAMS\Mist\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\Mist\Mist.lnk" "$INSTDIR\mist.exe" "" "$INSTDIR\logo.ico" 0
 
 SectionEnd
 
@@ -102,10 +102,10 @@ Section "Uninstall"
 
   RMDir "$INSTDIR"
 
-  Delete "$DESKTOP\Ethereal.lnk"
-  Delete "$SMPROGRAMS\Ethereal\*.*"
-  RmDir  "$SMPROGRAMS\Ethereal"
+  Delete "$DESKTOP\Mist.lnk"
+  Delete "$SMPROGRAMS\Mist\*.*"
+  RmDir  "$SMPROGRAMS\Mist"
 
-  DeleteRegKey /ifempty HKCU "Software\Ethereal"
+  DeleteRegKey /ifempty HKCU "Software\Mist"
 
 SectionEnd
