@@ -60,7 +60,7 @@ class AppBundler:
 
     # If macdeployqt handles qmldir then runs on app
     def runMacDeployQT(self):
-        exe = '/usr/local/opt/qt5/bin/macdeployqt'
+        exe = '/usr/local/Cellar/qt5/5.4.0/bin/macdeployqt'
         if not os.path.exists(exe): exe = 'macdeployqt'
         p = subprocess.Popen(exe, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         handles_qml = False
@@ -70,7 +70,8 @@ class AppBundler:
                 break
         if handles_qml and self.go_path is not None:
             qml_path = os.path.join(self.go_path, 'src/github.com/ethereum/go-ethereum/cmd/mist/assets/qml/') #TODO this is terrible
-            command = exe + ' ' + os.path.join(self.output_dir + '/Mist.app') + ' -qmldir=' +  qml_path #TODO this is terrible
+            out = os.path.join(self.output_dir + '/Mist.app')
+            command = exe + ' ' + out + ' -executable='+out+'/Contents/MacOS/Mist' + ' -qmldir=' +  qml_path #TODO this is terrible
             logging.info('Running macdeployqt with options')
             p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             for line in p.stdout.readlines():
@@ -223,6 +224,7 @@ class AppBundler:
 
         if self.insertQTWebProcess(): #https://bugreports.qt-project.org/browse/QTBUG-35211
             self.runMacDeployQT()
+            subprocess.Popen('sh script.sh ' + self.output_dir + "/Mist.app/Contents", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             os.system("appdmg dmg_spec.json Mist.dmg")
 
         logging.info("fin'")
