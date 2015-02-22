@@ -60,7 +60,7 @@ class AppBundler:
 
     # If macdeployqt handles qmldir then runs on app
     def runMacDeployQT(self):
-        exe = '/usr/local/Cellar/qt5/5.4.0/bin/macdeployqt'
+        exe = '/usr/local/opt/qt5/bin/macdeployqt'
         if not os.path.exists(exe): exe = 'macdeployqt'
         p = subprocess.Popen(exe, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         handles_qml = False
