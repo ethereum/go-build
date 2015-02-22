@@ -189,7 +189,6 @@ class AppBundler:
         if answer is '' or answer[0:1] == 'y': return True
         return False
 
-    def insertQTWebProcess(self, path="/usr/local/opt/qt5/libexec/QtWebProcess"):
         logging.info('Copying QTWebProcess')
         libexec_path = self.output_dir + '/Mist.app/Contents/libexec'
         try:
@@ -222,10 +221,9 @@ class AppBundler:
 
         #self.insertResources()
 
-        if self.insertQTWebProcess(): #https://bugreports.qt-project.org/browse/QTBUG-35211
-            self.runMacDeployQT()
-            subprocess.Popen('sh script.sh ' + self.output_dir + "/Mist.app/Contents", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            os.system("appdmg dmg_spec.json Mist.dmg")
+        self.runMacDeployQT()
+        os.system("sh script.sh " + self.output_dir + "/Mist.app/Contents")
+        os.system("appdmg dmg_spec.json Mist.dmg")
 
         logging.info("fin'")
 
