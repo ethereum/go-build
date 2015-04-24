@@ -29,9 +29,9 @@ XML_PLIST = """
   <key>CFBundleIconFile</key>
   <string>Mist.icns</string>
   <key>CFBundleShortVersionString</key>
-  <string>POC8</string>
+  <string>POC9</string>
   <key>CFBundleInfoDictionaryVersion</key>
-  <string>POC8</string>
+  <string>POC9</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>IFMajorVersion</key>
